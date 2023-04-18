@@ -6,11 +6,12 @@ export default function RegisterForm({ setToken }) {
   const [password, setPassword] = useState("");
 
   async function handleSubmit(e) {
-    e.prevent.Default();
+    e.preventDefault();
     try {
       const result = await registerUser(username, password);
       console.log("result of Registering User", result);
       setToken(result.data.token);
+      localStorage.setItem("token", result.data.token)
     } catch (error) {
       console.log("Error for Registering User: ", error);
     }

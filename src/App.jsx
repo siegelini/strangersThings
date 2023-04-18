@@ -5,7 +5,7 @@ import RegisterForm from "./components/RegisterForm";
 import AllPost from "./components/AllPosts";
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   console.log("Token from App.jsx", token);
   return (
