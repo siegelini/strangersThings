@@ -1,1 +1,1 @@
-# stranger's Things Project for class - graded
+# Stranger's Things - project for class - graded
