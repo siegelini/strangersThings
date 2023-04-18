@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { registerUser } from "../api/user";
-import { Link } from "react-router-dom";
+import { registerUser } from "../api";
 
 export default function RegisterForm({ setToken }) {
   const [username, setUsername] = useState("");
@@ -23,22 +22,19 @@ export default function RegisterForm({ setToken }) {
       <h1>Register</h1>
       <h4>Putting in users info</h4>
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="text"
-            name="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="text"
+          name="password"
+          placeholder="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button>Submit</button>
-        <Link to="/">Return to Login Page</Link>
       </form>
     </div>
   );
