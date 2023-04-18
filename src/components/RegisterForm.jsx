@@ -9,7 +9,7 @@ export default function RegisterForm({ setToken }) {
   async function handleSubmit(e) {
     e.prevent.Default();
     try {
-      const result = await RegisterUser(username, password);
+      const result = await registerUser(username, password);
       console.log("result of Registering User", result);
       setToken(result.data.token);
     } catch (error) {
