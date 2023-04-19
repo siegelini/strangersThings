@@ -14,10 +14,12 @@ function App() {
       <nav>
         <Link to="/">Login</Link>
         <Link to="/allposts">All Posts</Link>
+        <Link to="/CreatePost">Create a Post</Link>
       </nav>
       <Routes>
         <Route path="/" element={<RegisterForm setToken={setToken} />} />
         <Route path="allposts" element={<AllPost />} />
+        {/* /* <Route path="createposts" element={<createPost />} /> */}
       </Routes>
     </div>
   );

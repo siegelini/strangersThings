@@ -12,6 +12,25 @@ export async function fetchAllPost() {
   }
 }
 
+export async function createPost(postData) {
+  try {
+    const response = await fetch("${BASE_URL/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Authorization': `Bearer ${TOKEN_STRING_HERE}`
+      },
+      body: JSON.stringify(postData),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function registerUser(username, password) {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
