@@ -13,14 +13,15 @@ export default function AllPosts() {
   }, []);
 
   return (
-    <div className="postsCards">
+    <div className="posts-content">
       {posts.map((posts) => {
         return (
-          <div style={{margin: '10px', boxShadow: '0 4px 10px black' }} key={posts.author.username}>
-            <h1 style={{color: "white", background: "rgb(170, 69, 69)", margin: "0", padding:" 10px" }}>Username: {posts.author.username}</h1>
-            <h2>Title: {posts.title}</h2>
-            <p> {posts.description}</p>
-            <h2>Price: {posts.price}</h2>
+          <div className="post-card" key={posts.author.username}>
+            <h1 className="post-name"><span>Username: {posts.author.username}</span><i style={{padding:"5px", color:"gold"}} className="material-icons">bookmark_add</i></h1>
+            <h2 className="post-title">Title: {posts.title}</h2>
+            <img src="https://emojis.wiki/thumbs/emojis/panda.webp"/>
+            <p className="post-description"> {posts.description}</p>
+            <h2 className="post-price">Price: {posts.price}</h2>
           </div>
         )
       })}

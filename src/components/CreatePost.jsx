@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createPost } from "../api";
 
-export default function createPost() {
+export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -22,36 +22,32 @@ export default function createPost() {
   };
 
   return (
-    <div>
+    <div className="createPost-content">
       {status === "success" && <p>Post created successfully!</p>}
       {status === "error" && <p>There was an error creating the post.</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
+
+      <h1 className="greeting">Hello Stranger</h1>
+
+      <form className="createPost-form" onSubmit={handleSubmit}>
+        <label>Title:</label>
           <input
             type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Description:
+        <label>Description:</label>
           <textarea
+            style={{marginBottom:"5px"}}
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Price:
+        <label>Price:</label>
           <input
             type="number"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
           />
-        </label>
-        <br />
+          <br></br>
         <button type="submit">Create Post</button>
       </form>
     </div>

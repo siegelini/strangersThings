@@ -9,7 +9,7 @@ export default function RegisterForm({ setToken }) {
     e.preventDefault();
     try {
       const result = await registerUser(username, password);
-      console.log("result of Registering User", result);
+      console.log("Result of Registering User", result);
       setToken(result.data.token);
       localStorage.setItem("token", result.data.token)
     } catch (error) {
@@ -19,23 +19,24 @@ export default function RegisterForm({ setToken }) {
   }
 
   return (
-    <div>
-      <h1>Register</h1>
-      <h4>Putting in users info</h4>
-      <form onSubmit={handleSubmit}>
+    <div className="user-content">
+      <h1 className="title">Join Now!</h1>
+      <form className="user-form" onSubmit={handleSubmit}>
+        <label>Username:</label>
         <input
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Enter Username Here"
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label>Password:</label>
         <input
           type="text"
           name="password"
-          placeholder="password"
+          placeholder="Enter Password Here"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Submit</button>
+        <button>Register New User</button>
       </form>
     </div>
   );
