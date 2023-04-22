@@ -6,14 +6,11 @@ import LoginForm from "./components/LoginForm";
 import Logout from "./components/LogOut";
 import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
+import useAuth from "./Hooks/UseAuth";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   console.log("Token from App.jsx", token);
-
-  function handleLogout() {
-    localStorage.removeItem("token");
-  }
 
   return (
     <div className="App">
