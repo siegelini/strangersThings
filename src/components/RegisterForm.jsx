@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { registerUser } from "../api";
 import useAuth from "../Hooks/UseAuth";
 
-export default function RegisterForm({}) {
+export default function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const { setToken, user } = useAuth();
-  console.log("User from RegisterForm: ", user);
 
   async function handleSubmit(e) {
     e.preventDefault();
