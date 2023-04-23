@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import "./App.css";
 import RegisterForm from "./components/RegisterForm";
@@ -8,7 +9,7 @@ import CreatePost from "./components/CreatePost";
 import { useAuth } from "./Hooks/UseAuth"; //issues with commit
 
 function App() {
-  const { token } = useAuth();
+  const [token, setToken] = useState(localStorage.getItem("token"));
   console.log("Token from App.jsx", token);
 
   return (
