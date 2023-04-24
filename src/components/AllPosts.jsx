@@ -16,11 +16,7 @@ export default function AllPosts() {
     <div className="posts-content">
       {posts.map((posts) => {
         return (
-<<<<<<< HEAD
           <div className="post-card" key={posts._id}>
-=======
-          <div className="post-card" key={posts.author.username}>
->>>>>>> 952b54eddd78fe70a37663f6a7bd894f4f172959
             <h1 className="post-name">
               <span>Username: {posts.author.username}</span>
               <i
