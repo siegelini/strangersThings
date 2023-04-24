@@ -43,10 +43,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm setToken={setToken} />} />
         <Route path="/all-posts" element={<AllPost />} />
-        <Route
-          path="/create-post"
-          element={token ? <CreatePost token={token} /> : <Navigate to="/" />}
-        />
+        <Route path="/create-post" element={<CreatePost token={token} />} />
+
         <Route
           path="/register-user"
           element={<RegisterForm setToken={setToken} />}
