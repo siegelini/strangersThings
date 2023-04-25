@@ -6,6 +6,7 @@ import LoginForm from "./components/LoginForm";
 import Logout from "./components/LogOut";
 import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
+import { deletePost, updatePost } from "./api";
 // import { useAuth } from "./Hooks/UseAuth";
 
 function App() {
@@ -39,7 +40,20 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm setToken={setToken} />} />
         <Route path="/all-posts" element={<AllPost />} />
-        <Route path="/create-post" element={<CreatePost token={token} />} />
+        <Route
+          path="/create-post"
+          element={
+            <CreatePost
+              token={token}
+              onPostDelete={(postId) => {
+                deletePost;
+              }}
+              onPostUpdate={(updatedPost) => {
+                updatePost;
+              }}
+            />
+          }
+        />
         <Route
           path="/register-user"
           element={<RegisterForm setToken={setToken} />}

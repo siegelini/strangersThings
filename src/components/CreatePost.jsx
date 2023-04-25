@@ -68,10 +68,11 @@ export default function CreatePost({
           <button type="submit">Create Post</button>
         </form>
       ) : (
+        //using the question marks to have buttons show up for now.  cannot get it working yet
         <>
-          <h3>{post.title}</h3>
-          <p>{post.description}</p>
-          <p>{post.price}</p>
+          <h3>{post?.title}</h3>
+          <p>{post?.description}</p>
+          <p>{post?.price}</p>
           {token && (
             <div>
               <button onClick={() => setIsEditing(true)}>Edit</button>
