@@ -107,7 +107,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  padding-left: 10px;
+  padding-left: 15px;
   background-color: darkblue;
   color: white;
   letter-spacing: 1px;
@@ -133,6 +133,7 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   padding: 5px;
+  padding-right: 15px;
   background-color: darkblue;
   color: gold;
 }

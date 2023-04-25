@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllPost } from "../api";
-import { deletePost } from "../api";
+
 
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
@@ -20,12 +20,7 @@ export default function AllPosts() {
           <div className="post-card" key={posts._id}>
             <h1 className="post-name">
               <span>Username: {posts.author.username}</span>
-              <i
-                style={{ padding: "5px", color: "gold" }}
-                className="material-icons"
-              >
-                bookmark_add
-              </i>
+              <i style={{ padding: "5px", color: "gold" }} className="material-icons">message</i>
             </h1>
             <h2 className="post-title">Title: {posts.title}</h2>
             {/* <img src="https://emojis.wiki/thumbs/emojis/panda.webp" /> */}

@@ -33,11 +33,6 @@ function App() {
               Create Post
             </Link>
           )}
-          {/* {!token && (
-            <Link style={{ color: "deepskyblue" }} to="register-user">
-              Register
-            </Link>
-          )} */}
           {token && (
             <Link style={{ color: "darkorchid" }} to="/logout">
               Log Out

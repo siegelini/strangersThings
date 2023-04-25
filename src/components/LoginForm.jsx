@@ -14,7 +14,8 @@ export default function LoginForm ({setToken}) {
             const result = await userLogin(username, password);
             console.log("Result of User Login", result);
             setToken(result.data.token);
-            localStorage.setItem("token", result.data.token)
+            localStorage.setItem("token", result.data.token);
+            navigate('/all-posts');
         } catch (error) {
             console.log("Error for User Login: ", error);
         }
@@ -23,7 +24,7 @@ export default function LoginForm ({setToken}) {
     return (
         <div className="user-content">
             <h1 className="title">Log In</h1>
-            <form className="user-form" onSubmit={handleSubmit}>
+            <form className="user-form" onSubmit={handleSubmit} >
             <label>Username:</label>
             <input
                 type="text"
