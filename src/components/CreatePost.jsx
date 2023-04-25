@@ -3,7 +3,12 @@ import { createPost } from "../api";
 import { useNavigate } from "react-router-dom";
 import { deletePost, updatePost } from "../api";
 
-export default function CreatePost({ token, onPostDelete, onPostUpdate }) {
+export default function CreatePost({
+  token,
+  post,
+  onPostDelete,
+  onPostUpdate,
+}) {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
