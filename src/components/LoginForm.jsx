@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { userLogin } from "../api";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm ({setToken}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -21,7 +23,7 @@ export default function LoginForm ({setToken}) {
     return (
         <div className="user-content">
             <h1 className="title">Log In</h1>
-            <form onSubmit={handleSubmit} className="user-form">
+            <form className="user-form" onSubmit={handleSubmit}>
             <label>Username:</label>
             <input
                 type="text"

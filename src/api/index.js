@@ -113,9 +113,9 @@ export async function fetchMe(token) {
   }
 }
 
-export async function deletePost(title, description, price) {
+export async function deletePost(token, postId) {
   try {
-    const response = await fetch(`${BASE_URL}/posts/${post_id}`, {
+    const response = await fetch(`${BASE_URL}/posts/${postId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

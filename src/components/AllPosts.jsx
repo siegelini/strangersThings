@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllPost } from "../api";
+import { deletePost } from "../api";
 
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +28,7 @@ export default function AllPosts() {
               </i>
             </h1>
             <h2 className="post-title">Title: {posts.title}</h2>
-            <img src="https://emojis.wiki/thumbs/emojis/panda.webp" />
+            {/* <img src="https://emojis.wiki/thumbs/emojis/panda.webp" /> */}
             <p className="post-description"> {posts.description}</p>
             <h2 className="post-price">Price: {posts.price}</h2>
           </div>

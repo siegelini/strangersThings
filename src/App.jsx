@@ -18,21 +18,26 @@ function App() {
         <h1>Welcome to Stranger's Things</h1>
         <h3 className="navLinks">
           <Link style={{ color: "red" }} to="/">
-            Home
+            Login
           </Link>
           <Link style={{ color: "gold" }} to="/all-posts">
-            Posts
+            View Posts
           </Link>
           {token && (
-            <Link style={{ color: "aquamarine" }} to="/create-post">
+            <Link style={{ color: "aquamarine" }}>
+              Message Board
+            </Link>
+          )}
+          {token && (
+            <Link style={{ color: "deepskyblue" }} to="/create-post">
               Create Post
             </Link>
           )}
-          {!token && (
+          {/* {!token && (
             <Link style={{ color: "deepskyblue" }} to="register-user">
               Register
             </Link>
-          )}
+          )} */}
           {token && (
             <Link style={{ color: "darkorchid" }} to="/logout">
               Log Out
@@ -44,11 +49,7 @@ function App() {
         <Route path="/" element={<LoginForm setToken={setToken} />} />
         <Route path="/all-posts" element={<AllPost />} />
         <Route path="/create-post" element={<CreatePost token={token} />} />
-
-        <Route
-          path="/register-user"
-          element={<RegisterForm setToken={setToken} />}
-        />
+        <Route path="/register-user" element={<RegisterForm setToken={setToken} />} />
         <Route path="/logout" element={<Logout setToken={setToken} />} />
       </Routes>
     </div>
