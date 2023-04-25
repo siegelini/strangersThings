@@ -23,11 +23,7 @@ function App() {
           <Link style={{ color: "gold" }} to="/all-posts">
             View Posts
           </Link>
-          {token && (
-            <Link style={{ color: "aquamarine" }}>
-              Message Board
-            </Link>
-          )}
+          {token && <Link style={{ color: "aquamarine" }}>Message Board</Link>}
           {token && (
             <Link style={{ color: "deepskyblue" }} to="/create-post">
               Create Post
@@ -44,7 +40,10 @@ function App() {
         <Route path="/" element={<LoginForm setToken={setToken} />} />
         <Route path="/all-posts" element={<AllPost />} />
         <Route path="/create-post" element={<CreatePost token={token} />} />
-        <Route path="/register-user" element={<RegisterForm setToken={setToken} />} />
+        <Route
+          path="/register-user"
+          element={<RegisterForm setToken={setToken} />}
+        />
         <Route path="/logout" element={<Logout setToken={setToken} />} />
       </Routes>
     </div>
