@@ -155,3 +155,38 @@ export async function updatePost(postId, title, description, price, token) {
     console.error(err);
   }
 }
+
+export async function createMessage(subject, content, token) {
+  try {
+    const response = await fetch(`${BASE_URL}/messages`, {
+      method: "MESSAGE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        message: {
+          subject,
+          content,
+        },
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchMessages() {
+  try {
+    const response = await fetch(`${BASE_URL}/messages`);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
