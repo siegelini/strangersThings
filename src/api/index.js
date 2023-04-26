@@ -45,21 +45,21 @@ export async function userLogin(username, password) {
   }
 }
 
-// export async function userMe(username, password) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/users/me`, {
-//       headers: {
-//         "Content-Type": "application.json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+export async function fetchMe(token) {
+  try {
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log("Result in fetchMe: ", result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function fetchAllPost() {
   try {
@@ -96,22 +96,6 @@ export async function createPost(title, description, price, token) {
     console.error(error);
   }
 }
-
-// export async function fetchMe(token) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/users/me`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     const result = await response.json();
-//     console.log("Result in fetchMe: ", result);
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
 
 export async function deletePost(token) {
   try {
@@ -156,38 +140,38 @@ export async function updatePost(postId, title, description, price, token) {
   }
 }
 
-export async function createMessage(content, post, _id, token) {
-  try {
-    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        message: {
-          content,
-          post,
-          _id,
-        },
-      }),
-    });
+// export async function createMessage(content, post, _id, token) {
+//   try {
+//     const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         message: {
+//           content,
+//           post,
+//           _id,
+//         },
+//       }),
+//     });
 
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     const result = await response.json();
+//     console.log(result);
+//     return result;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
-export async function fetchMessages() {
-  try {
-    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// export async function fetchMessages() {
+//   try {
+//     const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
+//     const result = await response.json();
+//     console.log(result);
+//     return result;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
