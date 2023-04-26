@@ -7,6 +7,7 @@ import Logout from "./components/LogOut";
 import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import { deletePost, updatePost } from "./api";
+import Messages from "./components/Messages";
 // import { useAuth } from "./Hooks/UseAuth";
 
 function App() {
@@ -24,7 +25,11 @@ function App() {
           <Link style={{ color: "gold" }} to="/all-posts">
             View Posts
           </Link>
-          {token && <Link style={{ color: "aquamarine" }}>Message Board</Link>}
+          {token && (
+            <Link style={{ color: "aquamarine" }} to="/message-board">
+              Message Board
+            </Link>
+          )}
           {token && (
             <Link style={{ color: "deepskyblue" }} to="/create-post">
               Create Post
@@ -40,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginForm setToken={setToken} />} />
         <Route path="/all-posts" element={<AllPost />} />
+        <Route path="/message-board" element={<Messages />} />
         <Route
           path="/create-post"
           element={

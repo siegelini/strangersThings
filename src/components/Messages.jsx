@@ -1,41 +1,30 @@
 import { useEffect, useState } from "react";
-import { fetchMessages, createMessage } from "../api";
+import { fetchMessages } from "../api";
 
-function Messages() {
+export default function Messages() {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     async function getMessages() {
-      const messages = await fetchMessages();
-      setMessages(messages);
+      const messageList = await fetchMessages();
+      setMessages(messageList.data.messages);
     }
     getMessages();
   }, []);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const message = await createMessage(newMessage);
-    setMessages([...messages, message]);
-    setNewMessage("");
-  }
-
   return (
-    <div>
-      <h1>Messages</h1>
-      <ul>
-        {messages.map((message) => (
-          <li key={message.id}>{message.text}</li>
-        ))}
-      </ul>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(event) => setNewMessage(event.target.value)}
-        />
-        <button type="submit">Send</button>
-      </form>
+    <div className="message-content">
+      {messages.map((message) => {
+        return (
+          <div className="message-card" key={messages}>
+            <h1 className="message-title">
+              {" "}
+              Username: {messages.author.username}
+            </h1>
+            <h2 className="message-description">Message: {posts.messages}</h2>
+          </div>
+        );
+      })}
     </div>
   );
 }

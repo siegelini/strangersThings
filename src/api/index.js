@@ -156,18 +156,19 @@ export async function updatePost(postId, title, description, price, token) {
   }
 }
 
-export async function createMessage(subject, content, token) {
+export async function createMessage(content, post, _id, token) {
   try {
-    const response = await fetch(`${BASE_URL}/messages`, {
-      method: "MESSAGE",
+    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         message: {
-          subject,
           content,
+          post,
+          _id,
         },
       }),
     });
@@ -182,7 +183,7 @@ export async function createMessage(subject, content, token) {
 
 export async function fetchMessages() {
   try {
-    const response = await fetch(`${BASE_URL}/messages`);
+    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
     const result = await response.json();
     console.log(result);
     return result;
