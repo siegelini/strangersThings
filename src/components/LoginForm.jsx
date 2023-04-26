@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { userLogin } from "../api";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
-export default function LoginForm({ setToken }) {
+export default function LoginForm () {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setToken } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
