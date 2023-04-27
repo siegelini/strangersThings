@@ -114,32 +114,6 @@ export async function deletePosts(token) {
   }
 }
 
-// export async function updatePost(postId, title, description, price, token) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/posts/${postId}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//       body: JSON.stringify({
-//         post: {
-//           title,
-//           description,
-//           price,
-//           location,
-//           willDeliver,
-//         },
-//       }),
-//     });
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
 // export async function createMessage(content, post, _id, token) {
 //   try {
 //     const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`, {
