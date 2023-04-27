@@ -29,6 +29,13 @@ body {
   text-transform: uppercase;
 }
 
+.profile-page {
+  display: flex;
+  margin-top: 30px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
 .user-content,
 .createPost-content {
   height: 75vh;
