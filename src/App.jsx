@@ -8,6 +8,7 @@ import CreatePost from "./components/CreatePost";
 import CreateMessage from "./components/CreateMessage";
 import useAuth from "./hooks/useAuth";
 import { useState } from "react";
+import AllPosts from "./components/AllPosts";
 
 function App() {
   const { token, setToken, user } = useAuth();
@@ -66,7 +67,7 @@ function App() {
         <Route path="/" element={<LoginForm />} />
         <Route
           path="/all-posts"
-          element={<AllPost searchParam={searchParam} />}
+          element={<AllPosts searchParam={searchParam} />}
         />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/create-post" element={<CreatePost />} />

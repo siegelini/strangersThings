@@ -175,9 +175,9 @@ button:hover {
   margin-top: 35px;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column-reverse;
+  flex-direction: row;
   justify-content: space-evenly;
-  align-content: center;
+  /* align-content: center; */
 }
 
 .post-card {
