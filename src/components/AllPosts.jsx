@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { createMessage, fetchAllPost } from "../api";
+import { fetchAllPost } from "../api";
 import { deletePosts } from "../api";
 import useAuth from "../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
   const { token, user } = useAuth();
 
   useEffect(() => {
@@ -19,32 +20,20 @@ export default function AllPosts() {
   return (
     <div className="posts-content">
       {posts.map((post) => {
-        const postId = post._id;
         return (
           <div className="post-card" key={post._id}>
+
             <h1 className="post-name">
               <span>Username: {post.author.username}</span>
-              <Link to={`/createMessages/${postId}`}>
-                <i
-                  style={{ padding: "5px", color: "gold" }}
-                  className="material-icons"
-                  onClick={async () => {
-                    await createMessage(token, post.author._id, postId);
-                    const response = await fetchAllPost();
-                    if (response.success) {
-                      setPosts(response.data.posts);
-                    } else {
-                      setError(response.error);
-                    }
-                  }}
-                >
-                  message
-                </i>
-              </Link>
+              {token && (
+                <i onClick={() => {navigate(`/message/${post._id}`);}} style={{padding:"5px", color:"gold"}} className="material-icons">message</i>
+              )}
             </h1>
+
             <h2 className="post-title">Title: {post.title}</h2>
-            {/* <img src="https://emojis.wiki/thumbs/emojis/panda.webp" /> */}
+
             <p className="post-description"> {post.description}</p>
+
             <h2 className="post-price">
               <span>Price: {post.price}</span>
               {user._id === post.author._id && (

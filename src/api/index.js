@@ -114,7 +114,7 @@ export async function deletePosts(token) {
   }
 }
 
-export async function createMessage(content, postId, token) {
+export async function createMessage(postId, token, message) {
   try {
     const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
       method: "POST",
@@ -124,22 +124,10 @@ export async function createMessage(content, postId, token) {
       },
       body: JSON.stringify({
         message: {
-          content,
+          content: message,
         },
       }),
     });
-
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function fetchMessages() {
-  try {
-    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
     const result = await response.json();
     console.log(result);
     return result;

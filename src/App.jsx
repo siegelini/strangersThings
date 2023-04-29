@@ -1,19 +1,17 @@
-import { useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "./App.css";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
+import MyProfile from "./components/MyProfile";
 import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
-import MyProfile from "./components/MyProfile";
-import useAuth from "./hooks/useAuth";
 import CreateMessage from "./components/CreateMessage";
+import useAuth from "./hooks/useAuth";
+
 
 function App() {
   const { token, setToken, user } = useAuth();
   const navigate = useNavigate();
-
-  console.log("Token from App.jsx", token);
 
   return (
     <div className="App">
@@ -26,15 +24,15 @@ function App() {
             Login
           </Link>
 
-          <Link style={{ color: "gold" }} to="/all-posts">
-            View Posts
-          </Link>
-
           {token && (
-            <Link style={{ color: "aquamarine" }} to="/my-profile">
+            <Link style={{ color: "gold" }} to="/my-profile">
               My Profile
             </Link>
           )}
+
+          <Link style={{ color: "aquamarine" }} to="/all-posts">
+            View Posts
+          </Link>
 
           {token && (
             <Link style={{ color: "deepskyblue" }} to="/create-post">
@@ -62,7 +60,7 @@ function App() {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/register-user" element={<RegisterForm />} />
-        <Route path="/createMessage/:postId" element={<CreateMessage />} />
+        <Route path="/Message/:postId" element={<CreateMessage />} />
       </Routes>
     </div>
   );
