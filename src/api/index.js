@@ -114,38 +114,36 @@ export async function deletePosts(token) {
   }
 }
 
-// export async function createMessage(content, post, _id, token) {
-//   try {
-//     const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//       body: JSON.stringify({
-//         message: {
-//           content,
-//           post,
-//           _id,
-//         },
-//       }),
-//     });
+export async function createMessage(content, postId, token) {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        message: {
+          content,
+        },
+      }),
+    });
 
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-// export async function fetchMessages() {
-//   try {
-//     const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
-//     const result = await response.json();
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+export async function fetchMessages() {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/POST_ID/messages`);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

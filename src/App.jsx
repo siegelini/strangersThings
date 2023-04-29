@@ -7,6 +7,7 @@ import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import MyProfile from "./components/MyProfile";
 import useAuth from "./hooks/useAuth";
+import CreateMessage from "./components/CreateMessage";
 
 function App() {
   const { token, setToken, user } = useAuth();
@@ -61,6 +62,7 @@ function App() {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/register-user" element={<RegisterForm />} />
+        <Route path="/createMessage/:postId" element={<CreateMessage />} />
       </Routes>
     </div>
   );

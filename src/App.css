@@ -163,3 +163,7 @@ button:hover {
 .createPost-form input {
   margin-bottom: 10px;
 }
+
+.createMessage-form input {
+  margin: bottom 10px;
+}
