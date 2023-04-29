@@ -7,11 +7,12 @@ import AllPost from "./components/AllPosts";
 import CreatePost from "./components/CreatePost";
 import CreateMessage from "./components/CreateMessage";
 import useAuth from "./hooks/useAuth";
-
+import { useState } from "react";
 
 function App() {
   const { token, setToken, user } = useAuth();
   const navigate = useNavigate();
+  const [searchParam, setSearchParam] = useState("");
 
   return (
     <div className="App">
@@ -53,10 +54,20 @@ function App() {
             </button>
           )}
         </h3>
+        <div>
+          <input
+            type="text"
+            placeholder="search"
+            onChange={(e) => setSearchParam(e.target.value)}
+          />
+        </div>
       </header>
       <Routes>
         <Route path="/" element={<LoginForm />} />
-        <Route path="/all-posts" element={<AllPost />} />
+        <Route
+          path="/all-posts"
+          element={<AllPost searchParam={searchParam} />}
+        />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/register-user" element={<RegisterForm />} />

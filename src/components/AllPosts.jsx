@@ -4,7 +4,7 @@ import { deletePosts } from "../api";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
-export default function AllPosts() {
+export default function AllPosts({ searchParam }) {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const { token, user } = useAuth();
@@ -17,16 +17,43 @@ export default function AllPosts() {
     getPosts();
   }, []);
 
+  const filteredPosts = posts.filter((post) => {
+    const searchTerms = searchParam.toLowerCase().split(" ");
+    return searchTerms.every((term) => {
+      return (
+        post.title.toLowerCase().includes(term) ||
+        post.description.toLowerCase().includes(term) ||
+        post.author.username.toLowerCase().includes(term)
+      );
+    });
+  });
+
+  const postsToRender = filteredPosts.length > 0 ? filteredPosts : posts;
+
   return (
     <div className="posts-content">
-      {posts.map((post) => {
+      <div>
+        <input
+          type="text"
+          placeholder="Search Posts"
+          onChange={(e) => setSearchParam(e.target.value)}
+        />
+      </div>
+      {postsToRender.map((post) => {
         return (
           <div className="post-card" key={post._id}>
-
             <h1 className="post-name">
               <span>Username: {post.author.username}</span>
               {token && (
-                <i onClick={() => {navigate(`/message/${post._id}`);}} style={{padding:"5px", color:"gold"}} className="material-icons">message</i>
+                <i
+                  onClick={() => {
+                    navigate(`/message/${post._id}`);
+                  }}
+                  style={{ padding: "5px", color: "gold" }}
+                  className="material-icons"
+                >
+                  message
+                </i>
               )}
             </h1>
 
