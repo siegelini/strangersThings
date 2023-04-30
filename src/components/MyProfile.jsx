@@ -19,7 +19,7 @@ export default function MyProfile() {
         <div className="main-page">
             
             <div className="my-messages">
-                <h1 className="message-intro">Message Board / My Posts</h1>
+            <   h1 className="message-intro">Message Board</h1>
                 {messages.map((message) => {
                     return (
                         <div className="message-card" key={message._id}>
@@ -32,6 +32,7 @@ export default function MyProfile() {
             </div>
 
             <div className="my-posts">
+                <h1 className="post-intro">Post History</h1>
                 {posts.map((post) => {
                     return (
                         <div className="my-card" key={post._id}>

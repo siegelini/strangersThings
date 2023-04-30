@@ -7,7 +7,12 @@ import { useNavigate } from "react-router-dom";
 export default function AllPosts({ searchParam }) {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  const [searchPost, setSearchPost] = useState("");
   const { token, user } = useAuth();
+
+  const filteredPosts = posts.filter((post) => {
+    return post.title.toLowerCase().includes(searchPost);
+  });
 
   useEffect(() => {
     async function getPosts() {
@@ -17,51 +22,37 @@ export default function AllPosts({ searchParam }) {
     getPosts();
   }, []);
 
-  const filteredPosts = posts.filter((post) => {
-    const searchTerms = searchParam.toLowerCase().split(" ");
-    return searchTerms.every((term) => {
-      return (
-        post.title.toLowerCase().includes(term) ||
-        post.description.toLowerCase().includes(term) ||
-        post.author.username.toLowerCase().includes(term)
-      );
-    });
-  });
-
-  const postsToRender = filteredPosts.length > 0 ? filteredPosts : posts;
-
   return (
-    <div className="posts-content">
-      <div>
+    <div className="allPosts-content">
+
+      <div className="searchBar">
+        <label style={{paddingRight:"15px" }}>Lets find what you're looking for!</label>
         <input
+          style={{width:"300px", padding:"5px" }}
           type="text"
-          placeholder="Search Posts"
-          onChange={(e) => setSearchParam(e.target.value)}
-        />
+          placeholder="Search Post Here"
+          onChange={(e) => {
+            setSearchPost(e.target.value.toLowerCase());
+            console.log(searchPost);}}/>
       </div>
-      {postsToRender.map((post) => {
+
+    <div className="posts-content">
+      {posts.length > 0 && !searchPost && posts.map((post) => {
         return (
           <div className="post-card" key={post._id}>
+
             <h1 className="post-name">
               <span>Username: {post.author.username}</span>
               {token && (
-                <i
-                  onClick={() => {
-                    navigate(`/message/${post._id}`);
-                  }}
-                  style={{ padding: "5px", color: "gold" }}
-                  className="material-icons"
-                >
-                  message
-                </i>
+                <i onClick={() => {navigate(`/message/${post._id}`);}} style={{ padding: "5px", color: "gold" }} className="material-icons">message</i>
               )}
             </h1>
 
-            <h2 className="post-title">Title: {post.title}</h2>
+            <h3 className="post-title">Title: {post.title}</h3>
 
             <p className="post-description"> {post.description}</p>
 
-            <h2 className="post-price">
+            <h3 className="post-price">
               <span>Price: {post.price}</span>
               {user._id === post.author._id && (
                 <i
@@ -77,13 +68,50 @@ export default function AllPosts({ searchParam }) {
                     }
                   }}
                 >
-                  delete_outline
-                </i>
+                  delete_outline</i>
               )}
-            </h2>
+            </h3>
           </div>
         );
       })}
+      {posts.length > 0 && searchPost && filteredPosts.map((post) =>{
+        return (
+          <div className="post-card" key={post._id}>
+
+            <h1 className="post-name">
+              <span>Username: {post.author.username}</span>
+              {token && (
+                <i onClick={() => {navigate(`/message/${post._id}`);}} style={{padding:"5px", color:"gold"}} className="material-icons">message</i>
+              )}
+            </h1>
+
+            <h3 className="post-title">{post.title}</h3>
+
+            <p className="post-description"> {post.description}</p>
+
+            <h3 className="post-price">
+              <span>Price: {post.price}</span>
+              {user._id === post.author._id && (
+                <i 
+                style={{padding:"5px", fontSize:"30px", color:"gold"}} 
+                className="material-icons"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  await deletePosts(token, post._id);
+                  const response = await fetchAllPost();
+                  if(response.success) {
+                    setPosts(response.data.posts);
+                  } else {
+                    setError(response.error);
+                  }
+                }}
+                >delete_outline</i>
+              )}
+            </h3>
+          </div>
+        )
+      })}
+    </div>
     </div>
   );
 }
